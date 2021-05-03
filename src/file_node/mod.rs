@@ -38,13 +38,10 @@ impl FileNode {
     }
 
     fn is_hidden(&self) -> bool {
-        match self.basename() {
-            Some(s) => match s.into_string() {
-                Ok(s) => s.starts_with('.'),
-                Err(_) => false,
-            },
-            None => false,
-        }
+        self.basename()
+            .and_then(|s| s.into_string().ok())
+            .map(|s| s.starts_with('.'))
+            .unwrap_or_else(|| false)
     }
 
     fn path(&self) -> &Path {
@@ -62,8 +59,6 @@ impl FileNode {
         has_nexts: &[bool],
         all: &[FileNode],
     ) -> Option<String> {
-        let has_next = all.iter().len() != index + 1;
-
         let arm = has_nexts.iter().fold(String::from(""), |arm, has_next| {
             if *has_next {
                 format!("{}│   ", arm)
@@ -71,9 +66,11 @@ impl FileNode {
                 format!("{}    ", arm)
             }
         });
-        let hand = if has_next { "├" } else { "└" };
 
+        let has_next = all.iter().len() != index + 1;
+        let hand = if has_next { "├" } else { "└" };
         let subtree = item.display([has_nexts, &[has_next]].concat());
+
         match subtree {
             Some(tree) => Some(format!("{}{} {}", arm, hand, tree)),
             None => None,
