@@ -1,0 +1,131 @@
+# rust-sandbox
+
+```
+$ cargo run /path/to/rust-sandbox
+```
+
+```
+/rust-sandbox
+└ Cargo.toml
+└ /target
+        └ CACHEDIR.TAG
+        └ /debug
+                └ /incremental
+                        └ /rust_sandbox-ys95c89rvbus
+                                └ s-fy8twvyrg7-qy3sq2.lock
+                                └ /s-fy8twvyrg7-qy3sq2-h81ycea1iezi
+                                        └ query-cache.bin
+                                        └ dep-graph.bin
+                                        └ work-products.bin
+                        └ /rust_sandbox-eaquenodi1qr
+                                └ /s-fy8twzpnkk-b6pu7z-gtynrpvm8wfe
+                                        └ 1od42bjtpfpw0068.o
+                                        └ 37ujlcpfir2nybp5.o
+                                        └ 4s5r5vrbc8f0sbyy.o
+                                        └ 5chwyq79vq6d1h92.o
+                                        └ 9yxkml2aznsi8t5.o
+                                        └ 41fwremnq25uz0i5.o
+                                        └ gbjzi3l88751y82.o
+                                        └ 4cxrforqtzw6g7qo.o
+                                        └ 1g58vnbthmqxjr3b.o
+                                        └ 3u38brksdamn72tc.o
+                                        └ 4zys14l7ttsguws6.o
+                                        └ 4uxe1bg52r0djbts.o
+                                        └ 4vvws0ihcsizgbod.o
+                                        └ 48b4p0vl7n5jmake.o
+                                        └ k52zmosc31plkjo.o
+                                        └ 3z9scf0u0maioady.o
+                                        └ 5daneyubns0wb4qq.o
+                                        └ 5ba2d2siwmfidu8q.o
+                                        └ 2o1vr5qpcz5yhthx.o
+                                        └ 35shag9yzi8oc387.o
+                                        └ 42dqod0mpjqcrcts.o
+                                        └ 12dqkk25nlvdxwxn.o
+                                        └ 2euq125fuz0kxeo2.o
+                                        └ 4m70xz3hjzpbudqw.o
+                                        └ 1nmogpp4xc7ye5yu.o
+                                        └ 3dphmiqg1msetalb.o
+                                        └ 2hqq27pdciw4tc9s.o
+                                        └ gigbvos3qn7seft.o
+                                        └ 3jdr3loywxtn3pag.o
+                                        └ 5fjunskizerkqr5p.o
+                                        └ 3ky1tbaa5lojv9m9.o
+                                        └ 2zeh9qia1cgymx47.o
+                                        └ 1k7bnepehr69vvpb.o
+                                        └ 2ib5den8tw5cqgaz.o
+                                        └ 2a1mxl35dct642mq.o
+                                        └ 2pccya7dx1zfxmlv.o
+                                        └ 3tlrdjp44s5wl8gc.o
+                                        └ 4bxgnxc3exutqsod.o
+                                        └ 4tjd7vtx76z5gnh.o
+                                        └ 505j6wpiwn766yp4.o
+                                        └ 4ri0qvxg7t89itow.o
+                                        └ 54kwupdxcfa50mtn.o
+                                        └ 454oap59ztkjw9zm.o
+                                        └ 4dn475i8itmogza6.o
+                                        └ 520u80iy3im6bgkw.o
+                                        └ bkvopuqgqzebds.o
+                                        └ 2by0dc65753blyif.o
+                                        └ 42lmsrct8yecfawj.o
+                                        └ 1xdcn924mknwckht.o
+                                        └ query-cache.bin
+                                        └ 3drcs8yfgaf0goig.o
+                                        └ 2ixbgr4f7vr4j09j.o
+                                        └ 5ec166ovcsajv2gz.o
+                                        └ 4kx0lwm5l6pu6086.o
+                                        └ 4pgvnbi0g5422r3o.o
+                                        └ 5f26suk63rsfhs1j.o
+                                        └ bhy6u4dapmluzo6.o
+                                        └ 76ecsqlvrr5npuf.o
+                                        └ 3kp1oby9dc5j2t9u.o
+                                        └ 1ikrgztkwb73u59k.o
+                                        └ 111zwsr8vqn6z4d0.o
+                                        └ dep-graph.bin
+                                        └ 3iffkn3ne7qjyqg6.o
+                                        └ 43kp57gc51txf1g9.o
+                                        └ 2fxto3nacb1iosor.o
+                                        └ work-products.bin
+                                        └ 120g5e21w3ks40vh.o
+                                        └ 3ihwah3jwi8b9wlr.o
+                                        └ 5dqhfbkwdkc8p2b3.o
+                                        └ 4tdqbbstnjya62av.o
+                                        └ 4mp0o0hxbhfesvmb.o
+                                        └ 3zgrnfxj4hkep4y.o
+                                        └ 2hryw7klrfetepg7.o
+                                        └ 19y116cn708zqz0l.o
+                                        └ 2kbhqksfnis88m4r.o
+                                        └ 50xpitf8nndhk8js.o
+                                └ s-fy8twzpnkk-b6pu7z.lock
+                        └ /rust_sandbox-1yda9nh5cej3a
+                                └ s-fy8twvyrg7-tmypq2.lock
+                                └ /s-fy8twvyrg7-tmypq2-2qiit0xj6h1vm
+                                        └ query-cache.bin
+                                        └ dep-graph.bin
+                                        └ work-products.bin
+                └ /rust-sandbox.dSYM
+                        └ /Contents
+                                └ /Resources
+                                        └ /DWARF
+                                                └ rust_sandbox
+                                └ Info.plist
+                └ /examples
+                └ rust-sandbox.d
+                └ /deps
+                        └ librust_sandbox-89fb791105cd57e1.rmeta
+                        └ librust_sandbox-1d7438ce4ce86dcf.rmeta
+                        └ /rust_sandbox.dSYM
+                                └ /Contents
+                                        └ /Resources
+                                                └ /DWARF
+                                                        └ rust_sandbox
+                                        └ Info.plist
+                        └ rust_sandbox.d
+                        └ rust_sandbox-1d7438ce4ce86dcf.d
+                        └ rust_sandbox
+                        └ rust_sandbox-89fb791105cd57e1.d
+                └ /build
+                └ rust-sandbox
+└ Cargo.lock
+└ /src
+        └ main.rs
+```
