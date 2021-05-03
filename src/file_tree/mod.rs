@@ -16,7 +16,7 @@ impl FileTree {
 
 impl Display for FileTree {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let lines = self.root.display(0).unwrap();
+        let lines = self.root.display(vec![]).unwrap();
         write!(f, "{}", lines)
     }
 }
