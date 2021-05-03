@@ -13,6 +13,7 @@ fn main() {
 
     let _command = args.next();
     let target = args.next().unwrap();
+    let cwd = env::current_dir().unwrap();
 
-    println!("{}", FileTree::new(target));
+    println!("{}", FileTree::resolve(target, cwd));
 }
