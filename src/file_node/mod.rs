@@ -152,9 +152,9 @@ mod tests {
     fn expected_subtree() -> String {
         String::from(
 "/src
-└ README.md
-└ fuga.rs
+├ README.md
+├ fuga.rs
 └ /child
-\t└ hoge.png")
+    └ hoge.png")
     }
 }
