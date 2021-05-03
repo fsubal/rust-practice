@@ -112,6 +112,7 @@ mod tests {
         let dir = FileNode::Directory(
             OsString::from("/src"),
             vec![
+                FileNode::File(OsString::from(".gitignore")),
                 FileNode::File(OsString::from("README.md")),
                 FileNode::File(OsString::from("fuga.rs")),
                 FileNode::Directory(
