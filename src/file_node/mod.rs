@@ -137,11 +137,11 @@ mod tests {
             vec![
                 FileNode::File(OsString::from(".gitignore")),
                 FileNode::File(OsString::from("README.md")),
-                FileNode::File(OsString::from("fuga.rs")),
                 FileNode::Directory(
                     OsString::from("/child"),
                     vec![FileNode::File(OsString::from("hoge.png"))],
                 ),
+                FileNode::File(OsString::from("fuga.rs")),
             ],
         );
 
@@ -153,8 +153,8 @@ mod tests {
         String::from(
 "/src
 ├ README.md
-├ fuga.rs
-└ /child
-    └ hoge.png")
+├ /child
+│   └ hoge.png
+└ fuga.rs")
     }
 }
