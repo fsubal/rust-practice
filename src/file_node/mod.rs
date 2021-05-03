@@ -133,12 +133,12 @@ mod tests {
     #[test]
     fn non_empty_directory_shows_subtree() {
         let dir = FileNode::Directory(
-            OsString::from("/src"),
+            OsString::from("src"),
             vec![
                 FileNode::File(OsString::from(".gitignore")),
                 FileNode::File(OsString::from("README.md")),
                 FileNode::Directory(
-                    OsString::from("/child"),
+                    OsString::from("child"),
                     vec![FileNode::File(OsString::from("hoge.png"))],
                 ),
                 FileNode::File(OsString::from("fuga.rs")),
