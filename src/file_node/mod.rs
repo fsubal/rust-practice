@@ -1,4 +1,4 @@
-use std::ffi::{OsStr, OsString};
+use std::ffi::OsString;
 use std::fs;
 use std::path::Path;
 
@@ -33,13 +33,15 @@ impl FileNode {
         FileNode::Directory(OsString::from(path), children)
     }
 
-    fn basename(&self) -> Option<&OsStr> {
-        return Path::new(self.to_path()).file_name();
+    fn basename(&self) -> Option<OsString> {
+        return Path::new(self.to_path())
+            .file_name()
+            .map(|s| s.to_os_string());
     }
 
     fn is_hidden(&self) -> bool {
         match self.basename() {
-            Some(s) => match s.to_os_string().into_string() {
+            Some(s) => match s.into_string() {
                 Ok(s) => s.starts_with('.'),
                 Err(_) => false,
             },
