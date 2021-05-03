@@ -56,7 +56,31 @@ impl FileNode {
         }
     }
 
-    pub fn display(&self, depth: usize) -> Option<String> {
+    fn on_visit_node(
+        item: &FileNode,
+        index: usize,
+        has_nexts: &[bool],
+        all: &[FileNode],
+    ) -> Option<String> {
+        let has_next = all.iter().len() != index + 1;
+
+        let arm = has_nexts.iter().fold(String::from(""), |arm, has_next| {
+            if *has_next {
+                format!("{}│   ", arm)
+            } else {
+                format!("{}    ", arm)
+            }
+        });
+        let hand = if has_next { "├" } else { "└" };
+
+        let subtree = item.display([has_nexts, &[has_next]].concat());
+        match subtree {
+            Some(tree) => Some(format!("{}{} {}", arm, hand, tree)),
+            None => None,
+        }
+    }
+
+    pub fn display(&self, has_nexts: Vec<bool>) -> Option<String> {
         if self.is_hidden() {
             return None;
         }
@@ -67,12 +91,9 @@ impl FileNode {
 
                 let tail: Vec<String> = children
                     .iter()
-                    .filter_map(|child| {
-                        let subtree = child.display(depth + 1);
-                        match subtree {
-                            Some(tree) => Some(format!("{}└ {}", "\t".repeat(depth), tree)),
-                            None => None,
-                        }
+                    .enumerate()
+                    .filter_map(|(index, child)| {
+                        FileNode::on_visit_node(child, index, &has_nexts, children)
                     })
                     .collect();
 
@@ -92,21 +113,21 @@ mod tests {
     fn file_shows_its_name() {
         let readme = FileNode::File(OsString::from("README.md"));
 
-        assert_eq!(readme.display(0), Some(String::from("README.md")));
+        assert_eq!(readme.display(vec![]), Some(String::from("README.md")));
     }
 
     #[test]
     fn hidden_file_is_skipped() {
         let gitignore = FileNode::File(OsString::from(".gitignore"));
 
-        assert_eq!(gitignore.display(0), None);
+        assert_eq!(gitignore.display(vec![]), None);
     }
 
     #[test]
     fn empty_directory_only_shows_dirname() {
         let dir = FileNode::Directory(OsString::from("target"), vec![]);
 
-        assert_eq!(dir.display(0), Some(String::from("/target")));
+        assert_eq!(dir.display(vec![]), Some(String::from("/target")));
     }
 
     #[test]
@@ -124,16 +145,16 @@ mod tests {
             ],
         );
 
-        assert_eq!(dir.display(0), Some(expected_subtree()));
+        assert_eq!(dir.display(vec![]), Some(expected_subtree()));
     }
 
     #[rustfmt::skip]
     fn expected_subtree() -> String {
         String::from(
 "/src
-└ README.md
-└ fuga.rs
+├ README.md
+├ fuga.rs
 └ /child
-\t└ hoge.png")
+    └ hoge.png")
     }
 }
