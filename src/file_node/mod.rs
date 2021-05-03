@@ -34,9 +34,7 @@ impl FileNode {
     }
 
     fn basename(&self) -> Option<OsString> {
-        return Path::new(self.to_path())
-            .file_name()
-            .map(|s| s.to_os_string());
+        return self.path().file_name().map(|s| s.to_os_string());
     }
 
     fn is_hidden(&self) -> bool {
@@ -49,11 +47,13 @@ impl FileNode {
         }
     }
 
-    fn to_path(&self) -> &OsString {
-        match self {
+    fn path(&self) -> &Path {
+        let os_string = match self {
             FileNode::Directory(path, _) => path,
             FileNode::File(path) => path,
-        }
+        };
+
+        Path::new(os_string)
     }
 
     fn on_visit_node(
