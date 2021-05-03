@@ -24,6 +24,12 @@ impl FileTree {
             root: FileNode::visit(&path),
         }
     }
+
+    // used only for test code
+    #[allow(dead_code)]
+    fn root_path(&self) -> &Path {
+        self.root.path()
+    }
 }
 
 impl Display for FileTree {
@@ -32,5 +38,21 @@ impl Display for FileTree {
             Some(lines) => write!(f, "{}", lines),
             None => write!(f, ""),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::path::PathBuf;
+
+    #[test]
+    fn expands_relative_path_correctly() {
+        let cwd = PathBuf::from("/hoge");
+
+        let tree1 = FileTree::resolve("/hoge/fuga/moge/1", &cwd);
+        let tree2 = FileTree::resolve("./fuga/moge/1", &cwd);
+
+        assert_eq!(tree1.root_path(), tree2.root_path());
     }
 }

@@ -44,7 +44,7 @@ impl FileNode {
             .unwrap_or_else(|| false)
     }
 
-    fn path(&self) -> &Path {
+    pub fn path(&self) -> &Path {
         let os_string = match self {
             FileNode::Directory(path, _) => path,
             FileNode::File(path) => path,
