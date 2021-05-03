@@ -8,7 +8,7 @@ pub struct FileTree {
 }
 
 impl FileTree {
-    pub fn resolve(path: impl AsRef<Path>, cwd: impl AsRef<Path>) -> Self {
+    pub fn from(path: impl AsRef<Path>, cwd: impl AsRef<Path>) -> Self {
         let path = path.as_ref();
         let path = if path.is_absolute() {
             path.to_path_buf()
@@ -21,7 +21,7 @@ impl FileTree {
 
     pub fn new(path: OsString) -> Self {
         Self {
-            root: FileNode::visit(&path),
+            root: FileNode::from(&path),
         }
     }
 
@@ -50,8 +50,8 @@ mod tests {
     fn expands_relative_path_correctly() {
         let cwd = PathBuf::from("/hoge");
 
-        let tree1 = FileTree::resolve("/hoge/fuga/moge/1", &cwd);
-        let tree2 = FileTree::resolve("./fuga/moge/1", &cwd);
+        let tree1 = FileTree::from("/hoge/fuga/moge/1", &cwd);
+        let tree2 = FileTree::from("./fuga/moge/1", &cwd);
 
         assert_eq!(tree1.root_path(), tree2.root_path());
     }

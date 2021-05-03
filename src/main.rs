@@ -15,5 +15,5 @@ fn main() {
     let target = args.next().unwrap();
     let cwd = env::current_dir().unwrap();
 
-    println!("{}", FileTree::resolve(target, cwd));
+    println!("{}", FileTree::from(target, cwd));
 }

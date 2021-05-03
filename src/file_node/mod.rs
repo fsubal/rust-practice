@@ -8,7 +8,7 @@ pub enum FileNode {
 }
 
 impl FileNode {
-    pub fn visit(os_string: &OsString) -> FileNode {
+    pub fn from(os_string: &OsString) -> FileNode {
         let path = Path::new(os_string);
 
         if !path.is_dir() {
@@ -23,7 +23,7 @@ impl FileNode {
                 let child_path = child_path.as_path();
 
                 if child_path.is_dir() {
-                    FileNode::visit(&OsString::from(child_path))
+                    FileNode::from(&OsString::from(child_path))
                 } else {
                     FileNode::File(OsString::from(child_path))
                 }
