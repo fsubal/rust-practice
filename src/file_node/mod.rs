@@ -80,3 +80,57 @@ impl FileNode {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::ffi::OsString;
+
+    #[test]
+    fn file_shows_its_name() {
+        let readme = FileNode::File(OsString::from("README.md"));
+
+        assert_eq!(readme.display(0), Some(String::from("README.md")));
+    }
+
+    #[test]
+    fn hidden_file_is_skipped() {
+        let gitignore = FileNode::File(OsString::from(".gitignore"));
+
+        assert_eq!(gitignore.display(0), None);
+    }
+
+    #[test]
+    fn empty_directory_only_shows_dirname() {
+        let dir = FileNode::Directory(OsString::from("target"), vec![]);
+
+        assert_eq!(dir.display(0), Some(String::from("/target")));
+    }
+
+    #[test]
+    fn non_empty_directory_shows_subtree() {
+        let dir = FileNode::Directory(
+            OsString::from("/src"),
+            vec![
+                FileNode::File(OsString::from("README.md")),
+                FileNode::File(OsString::from("fuga.rs")),
+                FileNode::Directory(
+                    OsString::from("/child"),
+                    vec![FileNode::File(OsString::from("hoge.png"))],
+                ),
+            ],
+        );
+
+        assert_eq!(dir.display(0), Some(expected_subtree()));
+    }
+
+    #[rustfmt::skip]
+    fn expected_subtree() -> String {
+        String::from(
+"/src
+└ README.md
+└ fuga.rs
+└ /child
+\t└ hoge.png")
+    }
+}
